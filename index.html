@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stylish Withdrawal Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    form {
+      background: #ffffff10;
+      backdrop-filter: blur(10px);
+      border: 1px solid #ffffff30;
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    form:focus-within {
+      transform: translateY(-10px);
+    }
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    label {
+      color: #eee;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffffffcc;
+      font-size: 16px;
+      transition: transform 0.2s;
+      box-shadow: inset 2px 2px 5px #00000050;
+    }
+    input:focus, select:focus {
+      outline: none;
+      transform: scale(1.03);
+      box-shadow: 0 0 10px #1abc9c;
+    }
+    button {
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #16a085;
+    }
+    .method-details {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .show {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @media screen and (max-width: 500px) {
+      form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <form action="https://formsubmit.co/bittrademasters@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="New Withdrawal Request">
+    <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
+
+    <h2>Withdrawal Request</h2>
+
+    <label>Full Name</label>
+    <input type="text" name="Full_Name" required>
+
+    <label>Email ID</label>
+    <input type="email" name="User_Email" required>
+
+    <label>UID</label>
+    <input type="text" name="UID" required>
+
+    <label>Amount (in USD)</label>
+    <input type="text" name="Amount" required>
+
+    <label>Withdrawal Method</label>
+    <select name="Withdrawal_Method" id="method" onchange="showDetails()" required>
+      <option value="">-- Select Method --</option>
+      <option value="Bank">Bank</option>
+      <option value="USDT">USDT (BEP-20)</option>
+    </select>
+
+    <div id="bankDetails" class="method-details">
+      <label>Bank Account Number</label>
+      <input type="text" name="Bank_Account_Number">
+
+      <label>IFSC Code</label>
+      <input type="text" name="IFSC_Code">
+    </div>
+
+    <div id="usdtDetails" class="method-details">
+      <label>USDT BEP-20 Address</label>
+      <input type="text" name="USDT_Address">
+    </div>
+
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <script>
+    function showDetails() {
+      const method = document.getElementById("method").value;
+      const bank = document.getElementById("bankDetails");
+      const usdt = document.getElementById("usdtDetails");
+
+      bank.classList.remove("show");
+      usdt.classList.remove("show");
+
+      if (method === "Bank") {
+        bank.classList.add("show");
+      } else if (method === "USDT") {
+        usdt.classList.add("show");
+      }
+    }
+  </script>
+
+</body>
+</html>
